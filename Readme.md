@@ -20,6 +20,7 @@
 *Thanks Nicolas*
 
 [강의 :Nomad coder - GraphQL으로 영화API 만들기](https://academy.nomadcoders.co/courses/enrolled/357405)
+
 [참고 :King Tora - GraphQL 소개 - GrpahQL이란?](https://tora-it-kingdom.tistory.com/23)
 
 
