@@ -1,31 +1,48 @@
-export const people = [
-    {
-        id: 0,
-        name : "gaeng1",
-        age : 20,
-        gender : "male"
-    },
-    {
-        id: 1,
-        name : "gaeng2",
-        age : 22,
-        gender : "male"
-    },
-    {
-        id: 2,
-        name : "gaeng3",
-        age : 23,
-        gender : "female"
-    },
-    {
-        id: 3,
-        name : "gaeng4",
-        age : 24,
-        gender : "female"
-    }
-];
+import axios from 'axios'
+const BASE_URL = "https://yts.am/api/v2/";
+const LIST_MOVIES_URL = `${BASE_URL}list_movies.json`
+const MOVIE_DETAILS_URL = `${BASE_URL}movie_details.json`
+const MOVIES_SUGGESTIONS_URL = `${BASE_URL}movie_suggestions.json`
 
-export const getById = id => {
-    const filteredPeople = people.filter(p => p.id === id) 
-    return filteredPeople[0]
+
+export const getMovies = async (limit,rating) =>{
+    const {
+        data : {
+            data:{ movies }
+        }
+    } = await axios(LIST_MOVIES_URL,{
+        params : {
+            limit,
+            minimum_rating : rating
+        }
+    })
+    return movies
+}
+
+export const getMovie = async id => {
+    const {
+        data : {
+            data:{ movie }
+        }
+    } = await axios(MOVIE_DETAILS_URL,{
+        params : {
+            movie_id : id
+        }
+    })
+    console.log(movie)
+    return movie
+}
+
+export const getSuggestions = async id => {
+    const {
+        data : {
+            data : { movies }
+        }
+    } = await axios(MOVIES_SUGGESTIONS_URL,{
+        params : {
+            movie_id : id
+        }
+    })
+    
+    return movies;
 }
